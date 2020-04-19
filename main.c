@@ -6,6 +6,7 @@ int selectMenu(){
 	printf("2. 메뉴 추가\n");
 	printf("3. 메뉴 수정\n");
 	printf("4. 메뉴 삭제\n");
+	printf("5. 파일 저장\n");
 	printf("0. 종료\n");
 	printf("=> 원하는 메뉴는? ");
 	scanf("%d",&menu);
@@ -17,8 +18,12 @@ int main(){
 	printf("Debug : %s %s %s %d\n",__DATE__,__TIME__,__FILE__,__LINE__);
 #endif
 	Product s[100];
+
 	int count =0, menu;
 	int curcount=0;
+	
+	count = loadData(s);
+	curcount = count;
 
 	while(1){
 		menu = selectMenu();
@@ -50,6 +55,10 @@ int main(){
 			if(delete==1)
 				 if(deleteProduct(&s[no-1])) count--;
 			}
+		else if(menu==5){
+			if(count==0) printf("데이터가 없습니다!\n");
+			else saveData(s,curcount);	
+		}
 }		
 		printf("종료됨!\n");
 		return 0;
