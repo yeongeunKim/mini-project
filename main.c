@@ -7,6 +7,7 @@ int selectMenu(){
 	printf("3. 메뉴 수정\n");
 	printf("4. 메뉴 삭제\n");
 	printf("5. 파일 저장\n");
+	printf("6. 이름 검색\n");
 	printf("0. 종료\n");
 	printf("=> 원하는 메뉴는? ");
 	scanf("%d",&menu);
@@ -58,6 +59,9 @@ int main(){
 		else if(menu==5){
 			if(count==0) printf("데이터가 없습니다!\n");
 			else saveData(s,curcount);	
+		}
+		else if(menu == 6){
+			searchName(s,curcount);
 		}
 }		
 		printf("종료됨!\n");
