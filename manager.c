@@ -9,11 +9,15 @@ void saveData(Product *s,int count){
 	fclose(fp);
 	printf("=> 저장됨!\n"); 
 }
-int loadData(Product *s){
+int loadData(Product s[]){
 	int count = 0;
 	FILE *fp;
 	fp = fopen("product.txt","rt");
-	for(;;count++){
+	if(fp==NULL){
+		printf("=> 파일 없음!\n");
+		return 0;	
+		}
+	for(; ;count++){
 		fscanf(fp,"%[^\n]s %d %d %d %d",s[count].name,&s[count].weight,&s[count].price,&s[count].standard,&s[count].star);
 		if(feof(fp)) break;
 		}
@@ -61,17 +65,35 @@ void searchPrice(Product *s,int count){
 	int pcount = 0;
 	int search;
 	printf("검색하고 싶은 가격대를 입력하시오. ");
-	scanf("%d",search);
+	scanf("%d",&search);
 	printf("==============================\n");
 	for(int i=0;i<count;i++){
 		if(s[i].price !=-1){
-			if(s[i].price == search){
+			if(search == s[i].price){
 				printf("%2d", i+1);
 				readProduct(s[i]);
-				scount++;
+				pcount++;
 			}
 		}		
 	}	
-	if(scount ==0) printf("=> 검색 된 데이터가 없습니다.\n");
+	if(pcount ==0) printf("=> 검색 된 데이터가 없습니다.\n");
 	printf("\n");
+}
+void searchStar(Product *s,int count){
+	int tcount = 0;
+	int search;
+	printf("검색하고 싶은 별점수를 입력하시오. ");
+	scanf("%d",&search);
+	printf("==============================\n");
+	for(int i=0; i<tcount;i++){
+		if(s[i].price !=-1){
+			if(search == s[i].star){
+				printf("%2d",i+1);
+				readProduct(s[i]);
+				tcount++;	
+			}
+		}
+	}
+	if(tcount == 0) printf("=> 검색 된 데이터가 없습니다.\n");
+	printf("\n");	
 }	
