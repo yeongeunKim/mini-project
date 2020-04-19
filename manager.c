@@ -4,12 +4,12 @@ void saveData(Product *s,int count){
 	FILE *fp;
 	fp = fopen("product.txt","wt");
 	for(int i=0;i<count;i++){
-		if(s[i].price != -1) fprintf(fp,"%[^\n]s %d %d %d %d",s[i].name,s[i].weight,s[i].price,s[i].standard,s[i].star);
+		if(s[i].price != -1) fprintf(fp,"%s %d %d %d %d",s[i].name,s[i].weight,s[i].price,s[i].standard,s[i].star);
 	}
 	fclose(fp);
 	printf("=> 저장됨!\n"); 
 }
-int loadData(product *s){
+int loadData(Product *s){
 	int count = 0;
 	FILE *fp;
 	fp = fopen("product.txt","rt");
@@ -25,7 +25,7 @@ void listProduct(Product *s,int count){
 	printf("==============================\n");
 	for(int i=0; i<count; i++){
 		if(s[i].weight == -1) continue;
-		printf("%d.  ",i+1);
+		printf("%d ",i+1);
 		readProduct(s[i]);
 		}
 	printf("\n");
@@ -48,8 +48,8 @@ void searchName(Product *s, int count){
 	for(int i=0;i<count;i++){
 		if(s[i].price !=-1){
 			if(strstr(s[i].name,search)){
-				printf("2d",i+1);
-				readScore(s[i]);
+				printf("%d",i+1);
+				readProduct(s[i]);
 				scount++;				
 			}		
 		}			
