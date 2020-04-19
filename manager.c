@@ -22,7 +22,7 @@ int loadData(product *s){
 	return count;
 }
 void listProduct(Product *s,int count){
-	printf("********************\n");
+	printf("==============================\n");
 	for(int i=0; i<count; i++){
 		if(s[i].weight == -1) continue;
 		printf("%d.  ",i+1);
@@ -38,5 +38,22 @@ int selectProductNo(Product *s,int count){
 	scanf("%d",&no);
 	return no;
 	}
+void searchName(Product *s, int count){
+	int scount = 0;
+	char search[50];
 
-	
+	printf("검색할 제품명을 입력하시오. ");
+	scanf("%s", search);
+	printf("==============================\n");
+	for(int i=0;i<count;i++){
+		if(s[i].price !=-1){
+			if(strstr(s[i].name,search)){
+				printf("2d",i+1);
+				readScore(s[i]);
+				scount++;				
+			}		
+		}			
+	}
+	if(scount ==0) printf("=>검색된 데이터가 없습니다.\n");
+	printf("\n");	
+}	
