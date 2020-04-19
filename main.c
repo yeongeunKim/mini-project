@@ -8,6 +8,7 @@ int selectMenu(){
 	printf("4. 메뉴 삭제\n");
 	printf("5. 파일 저장\n");
 	printf("6. 이름 검색\n");
+	printf("7. 가격 검색\n");
 	printf("0. 종료\n");
 	printf("=> 원하는 메뉴는? ");
 	scanf("%d",&menu);
@@ -62,6 +63,9 @@ int main(){
 		}
 		else if(menu == 6){
 			searchName(s,curcount);
+		}
+		else if(menu==7){
+			searchPrice(s,curcount);
 		}
 }		
 		printf("종료됨!\n");
