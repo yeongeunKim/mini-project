@@ -56,4 +56,22 @@ void searchName(Product *s, int count){
 	}
 	if(scount ==0) printf("=>검색된 데이터가 없습니다.\n");
 	printf("\n");	
+}
+void searchPrice(Product *s,int count){
+	int pcount = 0;
+	int search;
+	printf("검색하고 싶은 가격대를 입력하시오. ");
+	scanf("%d",search);
+	printf("==============================\n");
+	for(int i=0;i<count;i++){
+		if(s[i].price !=-1){
+			if(s[i].price == search){
+				printf("%2d", i+1);
+				readProduct(s[i]);
+				scount++;
+			}
+		}		
+	}	
+	if(scount ==0) printf("=> 검색 된 데이터가 없습니다.\n");
+	printf("\n");
 }	
