@@ -1,29 +1,36 @@
 #include "manager.h"
 
-void saveData(Product *s,int count){
-	FILE *fp;
-	fp = fopen("product.txt","wt");
-	for(int i=0;i<count;i++){
-		if(s[i].price != -1) fprintf(fp,"%s %d %d %d %d",s[i].name,s[i].weight,s[i].price,s[i].standard,s[i].star);
-	}
-	fclose(fp);
-	printf("=> 저장됨!\n"); 
+void saveData(Product *s, int count)
+{
+    FILE *fp;
+    fp = fopen("pro.txt", "wt");
+
+    for (int i = 0; i < count; i++)
+    {
+        if (s[i].price != -1)
+            fprintf(fp, "%d %d %d %d %s\n", s[i].weight, s[i].price,s[i].standard,s[i].star, s[i].name);
+    }
+    fclose(fp);
+    printf("=>저장됨!\n");
 }
-int loadData(Product s[]){
-	int count = 0;
-	FILE *fp;
-	fp = fopen("product.txt","rt");
-	if(fp==NULL){
-		printf("=> 파일 없음!\n");
-		return 0;	
-		}
-	for(; ;count++){
-		fscanf(fp,"%[^\n]s %d %d %d %d",s[count].name,&s[count].weight,&s[count].price,&s[count].standard,&s[count].star);
-		if(feof(fp)) break;
-		}
-	fclose(fp);
-	printf("=> 로딩 성공!\n");
-	return count;
+int loadData(Product *s)
+{
+    FILE *fp;
+    fp = fopen("pro.txt", "rt");
+
+    if (fp == NULL) {
+        printf("=>파일없음\n");
+        return 0;
+    }
+    int count = 0;
+    for ( ; ; count++){
+            fscanf(fp, "%d %d %d %d %[^\n]s\n", &s[count].weight, &s[count].price,&s[count].standard,&s[count].star, s[count].name);
+        if(feof(fp)) break;
+    }
+    fclose(fp);
+    printf("=>로딩 성공!\n");
+
+    return count;
 }
 void listProduct(Product *s,int count){
 	printf("==============================\n");
@@ -85,7 +92,7 @@ void searchStar(Product *s,int count){
 	printf("검색하고 싶은 별점수를 입력하시오. ");
 	scanf("%d",&search);
 	printf("==============================\n");
-	for(int i=0; i<tcount;i++){
+	for(int i=0; i<count;i++){
 		if(s[i].price !=-1){
 			if(search == s[i].star){
 				printf("%2d",i+1);
