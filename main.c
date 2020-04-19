@@ -16,7 +16,7 @@ int selectMenu(){
 
 	return menu;
 }
-int main(){
+int main(void){
 #ifdef DEBUG
 	printf("Debug : %s %s %s %d\n",__DATE__,__TIME__,__FILE__,__LINE__);
 #endif
@@ -59,7 +59,7 @@ int main(){
 				 if(deleteProduct(&s[no-1])) count--;
 			}
 		else if(menu==5){
-			if(count==0) printf("데이터가 없습니다!\n");
+			if(count == 0) printf("데이터가 없습니다!\n");
 			else saveData(s,curcount);	
 		}
 		else if(menu == 6){
